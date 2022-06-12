@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -7,9 +8,14 @@ import {
     Products,
     Cart,
     Checkout,
+    Slides,
 } from "./components";
 
+
 import { commerce } from "./lib/commerce";
+import CategoryList from "./components/CategoryList/CategoryList";
+import Home from "./pages/home/home";
+import Details from "./components/Products/Details/details";
 
 const App = () => {
     const [ mobileOpen, setMobileOpen ] = React.useState( false );
@@ -20,9 +26,10 @@ const App = () => {
 
     const fetchProducts = async () => {
         const { data } = await commerce.products.list();
-
+        console.log( "product:",data );
         setProducts( data );
     };
+
 
     const fetchCart = async () => {
         setCart( await commerce.cart.retrieve());
@@ -79,14 +86,31 @@ const App = () => {
 
     return (
         <Router>
-            <div style={{ display: "flex" }}>
+            <div style={{  }}>
                 <CssBaseline />
-                <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+                <Navbar  totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+                {/* <div className="flex">
+                    <div className="flex-none w-1/5 h-14">
+                        <CategoryList  style={{ position: "relative", top: "-146px" }} />
+
+                    </div>
+                    <div style={{    height: "451px", padding: "41px" }} className="flex-initial  w-7/12">
+                    
+                        <Slides/>
+                    </div>
+                    <div className="flex-initial w-1/5">
+                        <CategoryList  style={{ position: "relative", top: "-146px" }} />
+                    </div>
+                </div> */}
                 <Switch>
                     <Route exact path="/">
-                        <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
+                        <Home totalItems={cart.total_items} />
                     </Route>
-                    <Route exact path="/cart">
+                    <Route  path="/details/:id_prod">
+                        <Details  />
+                    </Route>
+                
+                    <Route  path="/cart">
                         <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
                     </Route>
                     <Route path="/checkout" exact>
