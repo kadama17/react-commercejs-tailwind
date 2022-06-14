@@ -3,8 +3,45 @@ import React from "react";
 
 
 const Product = ({ product, onAddToCart }) => {
+ 
+     
+
+
+    const addHistory =  ( product ) => {
+        var prevHistory = [];
+        if ( localStorage.getItem( "lastViewed" )===null ){
+            prevHistory.push( product );
+            localStorage.setItem( "lastViewed", JSON.stringify( prevHistory ));
+        }
+        else {
+            prevHistory = JSON.parse( localStorage.getItem( "lastViewed" ));
+            console.log( prevHistory );
+
+            if ( prevHistory.some( vendor => vendor.id !== product.id )){
+                prevHistory.push( product );
+                localStorage.setItem( "lastViewed",  JSON.stringify( prevHistory ));
+            }
+            else{
+                localStorage.setItem( "lastViewed",  JSON.stringify( prevHistory ));
+
+            }
+
+            
+          
+           
+        }
+
+      
+        
+
+
+    };
+
 
     const handleAddToCart = () => onAddToCart( product.id, 1 );
+
+ 
+
 
     return ( <>
     
@@ -83,7 +120,7 @@ const Product = ({ product, onAddToCart }) => {
                                     <button onClick={handleAddToCart} className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-purple-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                                         <span>Ajouter</span>
                                     </button>
-                                    <button   onClick={event =>  window.location.href=`/details/${product.id}`} className="transition ease-in duration-300 bg-gray-700 hover:bg-gray-800 border hover:border-gray-500 border-gray-700 hover:text-white  hover:shadow-lg text-gray-400 rounded-full w-9 h-9 text-center p-2">
+                                    <button   onClick={event =>  { window.location.href=`/details/${product.id}`; addHistory( product );}} className="transition ease-in duration-300 bg-gray-700 hover:bg-gray-800 border hover:border-gray-500 border-gray-700 hover:text-white  hover:shadow-lg text-gray-400 rounded-full w-9 h-9 text-center p-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

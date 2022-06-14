@@ -16,6 +16,7 @@ import { commerce } from "./lib/commerce";
 import CategoryList from "./components/CategoryList/CategoryList";
 import Home from "./pages/home/home";
 import Details from "./components/Products/Details/details";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
     const [ mobileOpen, setMobileOpen ] = React.useState( false );
@@ -117,6 +118,8 @@ const App = () => {
                         <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
                     </Route>
                 </Switch>
+                <Footer/>
+                
             </div>
         </Router>
     );

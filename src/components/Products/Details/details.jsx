@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { commerce } from "../../../lib/commerce";
+import ProductHistory from "../ProductHistory";
 
 
 function Details  ()  {
@@ -143,7 +144,7 @@ function Details  ()  {
                                             <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
                                                 alt="image" />
                                         </div>
-                                        <div className="w-full col-span-2 row-span-2 rounded">
+                                        <div className="w-full rounded">
                                             <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
                                                 alt="image" />
                                         </div>
@@ -199,6 +200,12 @@ function Details  ()  {
                                             <option>3</option>
                                             <option>4</option>
                                             <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+
                                         </select>
   
                                         <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -214,9 +221,12 @@ function Details  ()  {
                         </div>
                     </div>
                 </div>
+
             </div>
      
         }  
+        <ProductHistory/>
+
         
     </> );}
 
